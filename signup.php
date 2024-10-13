@@ -1,7 +1,7 @@
 <?php
 // Configuration
-$siteKey = '6LcQL2AqAAAAAHNUOzxVGGvGoepJ7w6iBlzmYlQB';
-$secretKey = '6LcQL2AqAAAAAF3d2vTOmFWwtxKg6KdwXkHK2Edh';
+$siteKey = '6LdcQWAqAAAAALZc8_COaoojOW3tlFykJHGBYj2U';
+$secretKey = '6LdcQWAqAAAAAGCpabvKDuaf-JUDN0_n0ZUhVtE1';
 
 // Validate form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
