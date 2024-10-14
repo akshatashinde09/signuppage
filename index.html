@@ -1,27 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sign Up</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Signup</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Sign Up</h1>
-    <form action="signup.php" method="post">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name"><br><br>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email"><br><br>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password"><br><br>
-      <label for="confirm_password">Confirm Password:</label>
-      <input type="password" id="confirm_password" name="confirm_password"><br><br>
-      <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
-      <input type="submit" value="Sign Up">
-    </form>
-  </div>
+    <div class="container">
+        <h1>Business Signup</h1>
+        <form action="signup.php" method="POST">
+            <div class="form-group">
+                <label for="business_name">Business Name:</label>
+                <input type="text" class="form-control" id="business_name" name="business_name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="g-recaptcha" data-sitekey="6Ld5bmEqAAAAAI2mr1yOw5waRqbrL8r-yVa9WGpt"></div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+    </div>
 
-  <!-- Google Captcha Script -->
-  <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"></script>
 </body>
 </html>
