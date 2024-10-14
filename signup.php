@@ -1,40 +1,26 @@
 <?php
-// Configuration
-$siteKey = '6Ld5bmEqAAAAAI2mr1yOw5waRqbrL8r-yVa9WGpt';
+// Replace 'YOUR_SECRET_KEY' with your actual Google reCAPTCHA secret key
 $secretKey = '6Ld5bmEqAAAAALKKCgKWehjkvTP21GWf4YdwjbsR';
 
-// Validate form submission
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  // Validate Google Captcha
-  $captchaResponse = $_POST['g-recaptcha-response'];
-  $verifyResponse = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secretKey}&response={$captchaResponse}&remoteip={$_SERVER['REMOTE_ADDR']}");
-  $responseData = json_decode($verifyResponse, true);
-  if ($responseData['success']) {
-    // Validate form fields
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirm_password'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get reCAPTCHA response
+    $recaptchaResponse = $_POST['g-recaptcha-response'];
 
-    // Validate form fields
-    if (empty($name) || empty($email) || empty($password) || empty($confirmPassword)) {
-      $error = 'Please fill in all fields.';
-    } elseif ($password != $confirmPassword) {
-      $error = 'Passwords do not match.';
+    // Verify reCAPTCHA
+    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $recaptchaResponse);
+    $verifyResponse = json_decode($verifyResponse, true);
+
+    if ($verifyResponse['success']) {
+        // reCAPTCHA passed, process form data
+        $business_name = $_POST['business_name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        // Perform validation and database operations here
+
+        echo "Signup successful!";
     } else {
-      // Insert into database (not implemented in this example)
-      // ...
-      $success = 'Sign up successful!';
+        echo " reCAPTCHA verification failed. Please try again.";
     }
-  } else {
-    $error = 'Invalid Captcha response.';
-  }
-}
-
-// Display error or success message
-if (isset($error)) {
-  echo '<p class="error">' . $error . '</p>';
-} elseif (isset($success)) {
-  echo '<p class="success">' . $success . '</p>';
 }
 ?>
